@@ -9,8 +9,8 @@ public interface UsuarioService {
 
     List<Usuario> findAll();
     Usuario findById(Long id);
+    Usuario save(Usuario usuario);
     Usuario createUsuario(Usuario usuario);
-    void updateUsuario(Long id, Usuario usuario);
     void deleteUsuario(Long id);
 
 

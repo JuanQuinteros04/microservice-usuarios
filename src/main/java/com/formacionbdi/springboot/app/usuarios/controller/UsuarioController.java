@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -19,15 +18,31 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/ver/{id}")
     public Usuario detalle(@PathVariable Long id){
         Usuario usuario = usuarioService.findById(id);
         return usuario;
     }
 
-    @PutMapping("/crear")
+    @PostMapping("/crear")
     public Usuario crear(@RequestBody Usuario usuario){
-        return usuarioService.createUsuario(usuario);
+        Usuario usuarioDb = usuarioService.createUsuario(usuario);
+        return usuarioService.save(usuarioDb);
+
+    }
+
+    @PutMapping("/modificar/{id}")
+    public Usuario editar(@RequestBody Usuario usuario, @PathVariable Long id){
+        Usuario usuarioDb = usuarioService.findById(id);
+        usuarioDb.setNombre(usuario.getNombre());
+        usuarioDb.setApellido(usuario.getApellido());
+        usuarioDb.setEmail(usuario.getEmail());
+        usuarioDb.setUsername(usuario.getUsername());
+        usuarioDb.setPassword(usuario.getPassword());
+        usuarioDb.setRoles(usuario.getRoles());
+        usuarioDb.setEnabled(usuario.getEnabled());
+        usuarioService.save(usuarioDb);
+        return usuarioDb;
     }
 
     @DeleteMapping("/eliminar/{id}")

@@ -25,14 +25,15 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario createUsuario(Usuario usuario) {
+    public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
     @Override
-    public void updateUsuario(Long id, Usuario usuario) {
-
+    public Usuario createUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
+
 
     @Override
     public void deleteUsuario(Long id) {
