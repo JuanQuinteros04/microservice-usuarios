@@ -1,12 +1,11 @@
 package com.formacionbdi.springboot.app.usuarios.service;
 
-import com.formacionbdi.springboot.app.usuarios.model.entity.Usuario;
+import com.formacionbdi.springboot.app.commons.usuarios.model.entity.Usuario;
 import com.formacionbdi.springboot.app.usuarios.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -22,6 +21,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public Usuario findById(Long id) {
         return usuarioRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Usuario findByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override

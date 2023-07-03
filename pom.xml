@@ -64,6 +64,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.formacionbdi.springboot.app.commons.usuarios</groupId>
+            <artifactId>springboot-servicio-commons-usuario</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
