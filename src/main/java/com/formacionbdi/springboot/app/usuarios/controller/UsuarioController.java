@@ -5,6 +5,7 @@ import com.formacionbdi.springboot.app.usuarios.service.UsuarioServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,23 +20,22 @@ public class UsuarioController {
     Logger logger = LoggerFactory.getLogger(UsuarioController .class);
 
 
-    @GetMapping(value = "/listar")
-    public List<Usuario> listar(){
-        return usuarioService.findAll();
+    @GetMapping
+    public ResponseEntity<List<Usuario>> listar(){
+        return ResponseEntity.ok(usuarioService.findAll());
     }
 
-    @GetMapping("/ver/{id}")
-    public Usuario detalle(@PathVariable Long id){
-        Usuario usuario = usuarioService.findById(id);
-        return usuario;
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> detalle(@PathVariable Long id){
+        return ResponseEntity.ok(usuarioService.findById(id));
     }
 
-    @GetMapping("/username/{username}")
-    public Usuario userForName(@PathVariable String username){
-        return usuarioService.findByUsername(username);
+    @GetMapping("/{username}")
+    public ResponseEntity<Usuario> userForName(@PathVariable String username){
+        return ResponseEntity.ok(usuarioService.findByUsername(username));
     }
 
-    @PostMapping("/crear")
+    @PostMapping
     public Usuario crear(@RequestBody Usuario usuario){
         Usuario usuarioDb = usuarioService.createUsuario(usuario);
         return usuarioService.save(usuarioDb);
