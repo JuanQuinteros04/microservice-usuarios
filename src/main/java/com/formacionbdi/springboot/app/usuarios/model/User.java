@@ -1,6 +1,5 @@
 package com.formacionbdi.springboot.app.usuarios.model;
 
-import com.formacionbdi.springboot.app.commons.usuarios.model.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,17 +22,20 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true)
     private String username;
 
-    @Column(length = 60)
     private String password;
 
-    private Boolean enabled;
-    private String nombre;
-    private String apellido;
+    @Column(name = "is_enabled")
+    private Boolean isEnabled;
 
-    @Column(unique = true, length = 100)
+    private String name;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -41,6 +43,6 @@ public class User implements Serializable{
             uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "role_id"})})
     private List<Role> roles;
 
-    private Integer intentos;
+    private Integer intents;
 
 }
