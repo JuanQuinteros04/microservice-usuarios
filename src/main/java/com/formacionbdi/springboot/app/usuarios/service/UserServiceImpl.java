@@ -56,8 +56,9 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userRegister.getPassword()));
         user.setIsEnabled(true);
 
-        Optional<Role> role = roleRepository.findByName("ROLE_USER");
-        role.ifPresent(value -> user.setRoles(Arrays.asList(value)));
+        Optional<Role> role = roleRepository.findById(1L);
+        role.ifPresent(value -> user.setRoles(List.of(value)));
+        userRepository.save(user);
 
         return userMapper.userToUserResponse(user);
     }
