@@ -14,8 +14,15 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "intents", ignore = true)
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "isEnabled", ignore = true)
     User userDTOToUser(UserDTO userDTO);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "intents", ignore = true)
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "isEnabled", ignore = true)
     User userRegisterToUser(UserRegister userRegister);
 
     UserResponse userToUserResponse(User user);
