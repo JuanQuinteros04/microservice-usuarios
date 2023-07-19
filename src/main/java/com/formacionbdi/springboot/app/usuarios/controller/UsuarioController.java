@@ -35,7 +35,7 @@ public class UsuarioController {
         return ResponseEntity.ok(userService.findById(id));
     }
 
-    @GetMapping(value = "/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/username/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username){
         return ResponseEntity.ok(userService.findByUsername(username));
     }
